@@ -14,7 +14,7 @@
     "types": ["vite/client", "@types/jest"],
     "baseUrl": ".",
     "paths": {
-      "/@/*": ["src/*"]
+      "@/*": ["src/*"]
     },
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
   },
