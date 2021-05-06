@@ -3,7 +3,13 @@
     <BaseCardHeader class="MovieHeader">
       {{ movie.title }}
     </BaseCardHeader>
-    <BaseCardBody class="MovieBody"></BaseCardBody>
+    <BaseCardBody class="MovieBody">
+      <div
+        class="MovieThumbnail"
+        :style="{ backgroundImage: `url(${movie.img})` }"
+      ></div>
+      <div class="MovieDetails"></div>
+    </BaseCardBody>
   </BaseCard>
 </template>
 
@@ -38,6 +44,18 @@ export default defineComponent({
     overflow: hidden;
     white-space: normal;
     text-overflow: ellipsis;
+  }
+
+  .MovieBody {
+    display: flex;
+  }
+
+  .MovieThumbnail {
+    width: 150px;
+    height: 120px;
+    border-radius: 0.5rem;
+    background-size: cover;
+    background-position: center;
   }
 }
 </style>
