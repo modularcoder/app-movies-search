@@ -1,4 +1,4 @@
-# BookSearch: Example Vue 3 + Typescript + Vite + Prettier project
+# MovieApp: Example Vue 3 + Typescript + Vite + Prettier project
 
 
 ## Project inputs
@@ -13,6 +13,11 @@
 - The search in the data is made against the title, generes and actors
 - The deployment is done to GitHub page
 - The integration and testing is done via Jest
+
+## Asumption
+
+- Mobile view is out of scope
+- Movies searching is done against title, actor and genre
 
 
 

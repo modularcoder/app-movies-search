@@ -2,9 +2,16 @@
   <div class="MoviesPage">
     <TheHeader @inputSearch="handleSearchChange" />
     <BaseContainer>
-      <div class="MoviesListContainer">
-        <BaseCardMovie v-for="movie in movies" :key="movie.id" :movie="movie" />
+      <!-- Movies list -->
+      <div v-if="movies.length > 0" class="MoviesListContainer">
+        <BaseCardMovie
+          v-for="movie in movies"
+          :key="movie.id"
+          :movie="movie"
+          :highlight="search"
+        />
       </div>
+      <!-- Pagination -->
       <div v-if="itemsCount > itemsPerPage" class="MoviesPaginationContainer">
         <BasePagination
           :value="page"
@@ -12,6 +19,13 @@
           :per-page="itemsPerPage"
           @input="handlePageChange"
         />
+      </div>
+      <!-- Not Found  -->
+      <div
+        v-if="status !== 'pending' && !movies.length"
+        class="MoviesNotFoundContainer"
+      >
+        couldn't find any movie by search "{{ search }}" :(
       </div>
     </BaseContainer>
   </div>
@@ -24,6 +38,8 @@ import BaseContainer from '@/_common/BaseContainer/BaseContainer.vue'
 import BasePagination from '@/_common/BasePagination/BasePagination.vue'
 import TheHeader from '@/_common/TheHeader/TheHeader.vue'
 
+import { Movie } from '@/_types/Movie'
+
 import api from '@/_api/'
 
 export default defineComponent({
@@ -34,10 +50,13 @@ export default defineComponent({
     TheHeader,
   },
   setup() {
+    const status = ref('pending')
+    const statusMessage = ref('')
+
     const page = ref(1)
     const search = ref('')
     const searchBy = ref('everything')
-    const movies = ref()
+    const movies = ref<Movie[]>([])
     const itemsPerPage = ref(9)
     const itemsCount = ref(0)
 
@@ -50,25 +69,36 @@ export default defineComponent({
     }
 
     const requestMovies = async () => {
-      const { movies: moviesRes, count } = await api.movies.getList({
-        limit: itemsPerPage.value,
-        offset: itemsPerPage.value * (page.value - 1),
-        search: search.value,
-        searchBy: searchBy.value,
-      })
+      status.value = 'pending'
 
-      movies.value = moviesRes
-      itemsCount.value = count
+      try {
+        const { movies: moviesRes, count } = await api.movies.getList({
+          limit: itemsPerPage.value,
+          offset: itemsPerPage.value * (page.value - 1),
+          search: search.value,
+          searchBy: searchBy.value,
+        })
+
+        movies.value = moviesRes
+        itemsCount.value = count
+
+        status.value = 'idle'
+      } catch (err) {
+        status.value = 'error'
+        statusMessage.value = err.message
+      }
     }
 
     watchEffect(() => requestMovies())
 
     return {
+      status,
+      statusMessage,
       movies,
-      requestMovies,
       itemsPerPage,
       itemsCount,
       page,
+      search,
       handlePageChange,
       handleSearchChange,
     }
@@ -96,5 +126,16 @@ export default defineComponent({
   display: flex;
   width: 100%;
   justify-content: center;
+}
+
+.MoviesNotFoundContainer {
+  min-height: 500px;
+  color: #2b3717;
+  font-size: 2rem;
+  font-weight: bold;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
 }
 </style>

@@ -50,6 +50,10 @@ export default defineComponent({
       type: Object as PropType<Movie>,
       required: true,
     },
+    highlight: {
+      type: String as PropType<string | undefined>,
+      default: () => undefined,
+    },
   },
   setup(props) {
     return {}
