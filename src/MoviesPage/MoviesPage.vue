@@ -65,11 +65,11 @@ export default defineComponent({
   flex-direction: column;
 }
 .MoviesListContainer {
-  padding: 2rem 0;
+  padding: 2rem 0 4rem;
   display: grid;
   grid-column-gap: 30px;
   grid-row-gap: 30px;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
   flex: 1;
 }
 </style>

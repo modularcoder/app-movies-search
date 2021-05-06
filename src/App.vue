@@ -23,6 +23,7 @@ import MoviesPage from './MoviesPage/MoviesPage.vue'
     rgba(131, 166, 208, 1) 100%
   );
   background-attachment: fixed;
+  font-size: 16px;
 }
 
 * {

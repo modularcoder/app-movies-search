@@ -8,7 +8,27 @@
         class="MovieThumbnail"
         :style="{ backgroundImage: `url(${movie.img})` }"
       ></div>
-      <div class="MovieDetails"></div>
+      <div class="MovieDetails">
+        <div class="MovieDetailSection">
+          <label class="MovieDetailLabel"> Actors: </label>
+
+          <div class="MovieDetailContent">
+            <span v-for="genre in movie.genres" :key="genre">
+              {{ genre }}
+            </span>
+          </div>
+        </div>
+
+        <div class="MovieDetailSection">
+          <label class="MovieDetailLabel"> Genres: </label>
+
+          <div class="MovieDetailContent">
+            <span v-for="actor in movie.actors" :key="actor">
+              {{ actor }}
+            </span>
+          </div>
+        </div>
+      </div>
     </BaseCardBody>
   </BaseCard>
 </template>
@@ -56,6 +76,25 @@ export default defineComponent({
     border-radius: 0.5rem;
     background-size: cover;
     background-position: center;
+    background-color: #ccc;
+  }
+
+  .MovieDetails {
+    padding: 0 1rem;
+  }
+
+  .MovieDetailLabel {
+    font-weight: bold;
+    font-size: 0.8em;
+  }
+
+  .MovieDetailSection {
+    margin-bottom: 1rem;
+  }
+
+  .MovieDetailContent {
+    word-break: break-all;
+    font-size: 0.9em;
   }
 }
 </style>
