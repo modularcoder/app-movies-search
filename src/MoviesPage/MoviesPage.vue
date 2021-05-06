@@ -10,6 +10,7 @@
           :value="page"
           :total="itemsCount"
           :per-page="itemsPerPage"
+          @input="handlePageChange"
         />
       </div>
     </BaseContainer>
@@ -36,8 +37,12 @@ export default defineComponent({
     const page = ref(1)
     const search = ref('')
     const movies = ref()
-    const itemsPerPage = ref(12)
+    const itemsPerPage = ref(9)
     const itemsCount = ref(0)
+
+    const handlePageChange = (newPage: number) => {
+      page.value = newPage
+    }
 
     const requestMovies = async () => {
       const { movies: moviesRes, count } = await api.movies.getList({
@@ -58,6 +63,7 @@ export default defineComponent({
       itemsPerPage,
       itemsCount,
       page,
+      handlePageChange,
     }
   },
 })

@@ -5,6 +5,7 @@
       :key="page"
       :class="['PaginationItem', value === page && 'is-active']"
       href="#"
+      @click="handlePageClick($event, page)"
       >{{ page }}</a
     >
   </nav>
@@ -28,19 +29,38 @@ export default defineComponent({
       required: true,
     },
   },
+  emits: {
+    input(payload: number) {
+      return true
+    },
+  },
   setup(props, { emit }) {
-    const { total, perPage } = toRefs(props)
+    const { value, total, perPage } = toRefs(props)
 
     const numPages = computed(() => Math.ceil(total.value / perPage.value))
     const pages = computed(() => {
-      return new Array(numPages.value)
-        .fill(null)
-        .map((item, index) => index + 1)
+      const pagesVisible = []
+      const lastPageIndex = numPages.value + 1
+
+      for (let i = 1; i <= lastPageIndex; i++) {
+        if (i === 1 || i === lastPageIndex || Math.abs(value.value - i) < 5) {
+          pagesVisible.push(i)
+        }
+      }
+
+      return pagesVisible
     })
+
+    const handlePageClick = (e: MouseEvent, val: number) => {
+      e.preventDefault()
+
+      emit('input', val)
+    }
 
     return {
       pages,
       numPages,
+      handlePageClick,
     }
   },
 })
