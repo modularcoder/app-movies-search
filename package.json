@@ -48,5 +48,8 @@
     "vti": "^0.1.1",
     "vue-jest": "^5.0.0-alpha.7",
     "vue-tsc": "^0.0.24"
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }

@@ -1,11 +1,11 @@
 import { setupWorker } from 'msw'
-import { setupServer } from 'msw/node'
+// import { setupServer } from 'msw/node'
 import moviesMocks from './moviesMocks'
 
 const start =
-  process.env.NODE_ENV !== 'test'
+  import.meta.env.MODE !== 'test'
     ? setupWorker(...moviesMocks).start
-    : setupServer(...moviesMocks)
+    : setupWorker(...moviesMocks).start // @ToDo hanle server case setupServer(...moviesMocks)
 
 export default {
   init: start,

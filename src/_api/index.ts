@@ -3,19 +3,13 @@ import config from '@/_config'
 import instance from './client'
 import movies from './movies/movies'
 
-let apiMocks: any
-
-if (config.api.useMocks || process.env.NODE_ENV === 'test') {
-  apiMocks = require('./_mocks/')
-}
-
 const init = async (): Promise<void> => {
-  if (apiMocks) {
+  if (config.api.useMocks) {
+    const apiMocks = await import('./_mocks/')
     // Remove all SW caches
     const cachesNames = await caches.keys()
 
     await Promise.all(cachesNames.map((name) => caches.delete(name)))
-
     await apiMocks.default.init()
   }
 }

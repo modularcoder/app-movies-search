@@ -1,21 +1,42 @@
 <template>
   <div class="MoviesPage">
-    <TheHeader />
+    <TheHeader @inputSearch="requestMovies" />
     <BaseContainer>
       <div class="MoviesListContainer">
-        <BaseCard v-for="item in movies" :key="item" />
+        <BaseCard v-for="movie in movies" :key="movie.id">
+          {{ movie.name }}
+        </BaseCard>
       </div>
     </BaseContainer>
   </div>
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
 import BaseCard from '@/_common/BaseCard/BaseCard.vue'
 import BaseContainer from '@/_common/BaseContainer/BaseContainer.vue'
 import TheHeader from '@/_common/TheHeader/TheHeader.vue'
-// import TheInspector from '@/_common/TheInspector/TheInspector.vue'
 
-const movies = [1, 2, 3, 5, 6, 7, 8, 9, 10]
+import api from '@/_api/'
+
+const page = ref(1)
+const search = ref('')
+const movies = ref()
+const itemsPerPage = ref(9)
+const itemsCount = ref(0)
+
+const requestMovies = async () => {
+  const { movies: moviesRes, count } = await api.movies.getList({
+    limit: itemsPerPage.value,
+    offset: itemsPerPage.value * (page.value - 1),
+    search: search.value,
+  })
+
+  movies.value = moviesRes
+  itemsCount.value = count
+}
+
+requestMovies()
 </script>
 
 <style lang="scss" scoped>
