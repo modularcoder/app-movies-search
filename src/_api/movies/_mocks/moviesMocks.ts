@@ -68,9 +68,6 @@ const userMocks = [
     })
 
     const moviesMatching = Object.keys(weightsByMovieId).map((movieId) => {
-      console.log('movieId', movieId)
-      console.log('moviesData.byId[movieId]', moviesData.byId[movieId])
-
       return {
         ...moviesData.byId[movieId],
         searchMatchWeight: weightsByMovieId[movieId],
