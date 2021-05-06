@@ -13,28 +13,31 @@ const userMocks = [
     const search = req.url.searchParams.get('search')
     const searchBy = req.url.searchParams.get('searchBy')
 
-    const moviesMatching = moviesData.list
+    // If there is no searc therm just return the existing data
+    if (!search) {
+      const moviesMatching = moviesData.list
 
-    const result = {
-      movies: moviesMatching.slice(offset, offset + limit),
-      count: moviesMatching.length,
+      const result = {
+        movies: moviesMatching.slice(offset, offset + limit),
+        count: moviesMatching.length,
+      }
+
+      return res(
+        // Set custom status
+        ctx.status(200),
+        // Delay the response
+        ctx.delay(200),
+        // send JSON response body
+        ctx.json(result),
+      )
     }
 
-    return res(
-      // Set custom status
-      ctx.status(200),
-      // Delay the response
-      ctx.delay(500),
-      // send JSON response body
-      ctx.json(result),
-    )
+    // There is search param
   }),
 
   rest.get(`${apiUrl}/movies/:movieId`, (req, res, ctx) => {
-    // const { movieId } = req.params
-    // const user = booksData.byId[bookId]
-
-    const movie = {}
+    const { movieId } = req.params
+    const movie = moviesData.byId[movieId]
 
     if (movie) {
       return res(ctx.status(200), ctx.delay(200), ctx.json(movie))

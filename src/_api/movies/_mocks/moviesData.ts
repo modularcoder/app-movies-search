@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid'
 import { get as _get, keyBy as _keyBy } from 'lodash'
 import { Movie } from '@/_types/Movie'
 
-import moviesDataRaw from './moviesDataRaw.js'
+import moviesDataRaw from './moviesDataRaw'
 
 const moviesById: { [key: string]: Movie } = {}
 const moviesByActor: { [key: string]: Movie[] } = {}
