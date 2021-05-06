@@ -11,6 +11,7 @@ export type MovieActor = {
 export type Movie = {
   id: string
   title: string
+  img: string
   isSeries: boolean
   releaseDate: string
   genres: MovieGenre[]

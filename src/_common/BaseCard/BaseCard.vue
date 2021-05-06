@@ -1,8 +1,6 @@
 <template>
   <div class="BaseCard">
-    <header class="BaseCardBody"></header>
-    <div class="BaseCardBody"></div>
-    <footer class="BaseCardFooter"></footer>
+    <slot></slot>
   </div>
 </template>
 

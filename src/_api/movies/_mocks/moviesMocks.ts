@@ -1,18 +1,23 @@
-// import _ from 'lodash'
+import _ from 'lodash'
 import { rest } from 'msw'
 
 import config from '@/_config'
+import moviesData from './moviesData'
 
 const apiUrl = config.api.url
 
 const userMocks = [
   rest.get(`${apiUrl}/movies`, async (req, res, ctx) => {
-    // const limit = parseInt(req.params.limit || '10')
-    // const offset = parseInt(req.params.offset || '0')
+    const limit = parseInt(req.url.searchParams.get('limit') || '10')
+    const offset = parseInt(req.url.searchParams.get('offset') || '0')
+    const search = req.url.searchParams.get('search')
+    const searchBy = req.url.searchParams.get('searchBy')
+
+    const moviesMatching = moviesData.list
 
     const result = {
-      books: [],
-      count: 0,
+      movies: moviesMatching.slice(offset, offset + limit),
+      count: moviesMatching.length,
     }
 
     return res(

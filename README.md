@@ -1,6 +1,21 @@
-# Vue 3 + Typescript + Vite
+# BookSearch: Example Vue 3 + Typescript + Vite + Prettier project
 
-This template should help get you started developing with Vue 3 and Typescript in Vite.
+
+## Project inputs
+
+- The Project uses TypeScripts
+- TheProject uses Prettier coding formatting
+- The project uses Vite blazing fast as server and build tool
+- The API is mocked by msw
+- The app is made on top of Modular structure
+- SCSS is set up, but not used intensively
+- The sample data is generated on each session via faker.js lib
+- The search in the data is made against the title, generes and actors
+- The deployment is done to GitHub page
+- The integration and testing is done via Jest
+
+
+
 
 ## Recommended IDE Setup
 
