@@ -29,4 +29,12 @@ import MoviesPage from './MoviesPage/MoviesPage.vue'
 * {
   box-sizing: border-box;
 }
+
+a {
+  color: $colorPrimary;
+
+  &:hover {
+    color: $colorPrimaryDark;
+  }
+}
 </style>

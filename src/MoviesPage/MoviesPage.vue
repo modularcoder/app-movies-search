@@ -5,8 +5,13 @@
       <div class="MoviesListContainer">
         <BaseCardMovie v-for="movie in movies" :key="movie.id" :movie="movie" />
       </div>
-
-      <BasePagination :total="itemsCount" :per-page="itemsPerPage" />
+      <div class="MoviesPaginationContainer">
+        <BasePagination
+          :value="page"
+          :total="itemsCount"
+          :per-page="itemsPerPage"
+        />
+      </div>
     </BaseContainer>
   </div>
 </template>
@@ -31,7 +36,7 @@ export default defineComponent({
     const page = ref(1)
     const search = ref('')
     const movies = ref()
-    const itemsPerPage = ref(9)
+    const itemsPerPage = ref(12)
     const itemsCount = ref(0)
 
     const requestMovies = async () => {
@@ -63,13 +68,20 @@ export default defineComponent({
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  padding-bottom: 3rem;
 }
 .MoviesListContainer {
-  padding: 2rem 0 4rem;
+  padding: 2rem 0;
   display: grid;
   grid-column-gap: 30px;
   grid-row-gap: 30px;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
   flex: 1;
+}
+
+.MoviesPaginationContainer {
+  display: flex;
+  width: 100%;
+  justify-content: center;
 }
 </style>
