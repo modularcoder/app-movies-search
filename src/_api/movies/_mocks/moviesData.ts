@@ -3,14 +3,13 @@ import { nanoid } from 'nanoid'
 import { get as _get, keyBy as _keyBy } from 'lodash'
 import { Movie } from '@/_types/Movie'
 
-import moviesDataRaw from './moviesDataRaw.json'
-import moviesService from '../movies'
+import moviesDataRaw from './moviesDataRaw.js'
 
 const moviesById: { [key: string]: Movie } = {}
 const moviesByActor: { [key: string]: Movie[] } = {}
 const moviesByGenre: { [key: string]: Movie[] } = {}
 
-const list: Movie[] = moviesDataRaw.map((item, index) => {
+const list: Movie[] = moviesDataRaw.map((item: any) => {
   const movie = {
     id: nanoid(),
     img: item.posterurl,
@@ -21,12 +20,12 @@ const list: Movie[] = moviesDataRaw.map((item, index) => {
     actors: item.actors,
   }
 
-  movie.genres.forEach((genre) => {
+  movie.genres.forEach((genre: string) => {
     moviesByGenre[genre] = moviesByGenre[genre] || []
     moviesByGenre[genre].push(movie)
   })
 
-  movie.actors.forEach((actor) => {
+  movie.actors.forEach((actor: string) => {
     moviesByActor[actor] = moviesByActor[actor] || []
     moviesByActor[actor].push(movie)
   })

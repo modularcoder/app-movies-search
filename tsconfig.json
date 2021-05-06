@@ -8,6 +8,7 @@
     "sourceMap": true,
     "importHelpers": true,
     "skipLibCheck": true,
+    "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
