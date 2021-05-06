@@ -67,12 +67,17 @@ const userMocks = [
       }
     })
 
-    const moviesMatching = Object.keys(weightsByMovieId).map((movieId) => {
-      return {
-        ...moviesData.byId[movieId],
-        searchMatchWeight: weightsByMovieId[movieId],
-      }
-    })
+    const moviesMatching = Object.keys(weightsByMovieId)
+      .map((movieId) => {
+        return {
+          ...moviesData.byId[movieId],
+          searchMatchWeight: weightsByMovieId[movieId],
+        }
+      })
+      // Sort by weigths
+      .sort(
+        (movie1, movie2) => movie2.searchMatchWeight - movie1.searchMatchWeight,
+      )
 
     const result = {
       movies: moviesMatching.slice(offset, offset + limit),

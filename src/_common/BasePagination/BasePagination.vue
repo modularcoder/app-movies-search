@@ -40,7 +40,7 @@ export default defineComponent({
     const numPages = computed(() => Math.ceil(total.value / perPage.value))
     const pages = computed(() => {
       const pagesVisible = []
-      const lastPageIndex = numPages.value + 1
+      const lastPageIndex = numPages.value
 
       for (let i = 1; i <= lastPageIndex; i++) {
         if (i === 1 || i === lastPageIndex || Math.abs(value.value - i) < 5) {
