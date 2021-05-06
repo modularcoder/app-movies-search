@@ -17,6 +17,7 @@
     "lodash": "^4.17.21",
     "moment": "^2.29.1",
     "msw": "^0.28.2",
+    "normalize.css": "^8.0.1",
     "vue": "^3.0.5"
   },
   "devDependencies": {

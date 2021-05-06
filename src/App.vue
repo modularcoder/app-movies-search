@@ -1,29 +1,31 @@
 <template>
-  <TheHeader />
-  <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
+  <div class="App">
+    <MoviesPage />
+  </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
-import TheHeader from './_common/TheHeader/TheHeader.vue'
-import HelloWorld from '@/_common/HelloWorld/HelloWorld.vue'
-
-export default defineComponent({
-  name: 'App',
-  components: {
-    TheHeader,
-    HelloWorld,
-  },
-})
+<script setup lang="ts">
+import MoviesPage from './MoviesPage/MoviesPage.vue'
 </script>
 
-<style>
-#app {
+<style lang="scss">
+.App {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: rgb(238, 174, 202);
+  background: linear-gradient(
+    140deg,
+    rgba(238, 174, 202, 1) 0%,
+    rgba(131, 166, 208, 1) 100%
+  );
+  background-attachment: fixed;
+}
+
+* {
+  box-sizing: border-box;
 }
 </style>
