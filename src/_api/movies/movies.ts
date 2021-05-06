@@ -19,8 +19,6 @@ const moviesService: MoviesService = {
       .then((res: AxiosResponse<Movie>) => res.data)
   },
   getList(params: any) {
-    console.log('params', params)
-
     return apiClient
       .get(`/movies`, {
         params,

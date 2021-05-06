@@ -13,9 +13,9 @@
           <label class="MovieDetailLabel"> Actors: </label>
 
           <div class="MovieDetailContent">
-            <span v-for="genre in movie.genres" :key="genre">
+            <div v-for="genre in movie.genres" :key="genre" class="MovieDetail">
               {{ genre }}
-            </span>
+            </div>
           </div>
         </div>
 
@@ -23,9 +23,9 @@
           <label class="MovieDetailLabel"> Genres: </label>
 
           <div class="MovieDetailContent">
-            <span v-for="actor in movie.actors" :key="actor">
+            <div v-for="actor in movie.actors" :key="actor" class="MovieDetail">
               {{ actor }}
-            </span>
+            </div>
           </div>
         </div>
       </div>
@@ -71,6 +71,7 @@ export default defineComponent({
   }
 
   .MovieThumbnail {
+    flex-basis: 150px;
     width: 150px;
     height: 120px;
     border-radius: 0.5rem;
@@ -92,9 +93,10 @@ export default defineComponent({
     margin-bottom: 1rem;
   }
 
-  .MovieDetailContent {
-    word-break: break-all;
+  .MovieDetail {
     font-size: 0.9em;
+    margin-right: 0.5em;
+    word-break: break-all;
   }
 }
 </style>
