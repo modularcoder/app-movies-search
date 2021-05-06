@@ -20,6 +20,8 @@ const list: Movie[] = moviesDataRaw.map((item: any) => {
     actors: item.actors,
   }
 
+  moviesById[movie.id] = movie
+
   movie.genres.forEach((genre: string) => {
     moviesByGenre[genre] = moviesByGenre[genre] || []
     moviesByGenre[genre].push(movie)
@@ -37,7 +39,7 @@ const moviesData = {
   list,
   byId: moviesById,
   byActor: moviesByActor,
-  byGentre: moviesByGenre,
+  byGenre: moviesByGenre,
 }
 
 export default moviesData

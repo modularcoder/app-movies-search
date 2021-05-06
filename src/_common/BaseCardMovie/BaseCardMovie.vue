@@ -10,7 +10,7 @@
       ></div>
       <div class="MovieDetails">
         <div class="MovieDetailSection">
-          <label class="MovieDetailLabel"> Actors: </label>
+          <label class="MovieDetailLabel"> Genres: </label>
 
           <div class="MovieDetailContent">
             <div v-for="genre in movie.genres" :key="genre" class="MovieDetail">
@@ -20,7 +20,7 @@
         </div>
 
         <div class="MovieDetailSection">
-          <label class="MovieDetailLabel"> Genres: </label>
+          <label class="MovieDetailLabel"> Actors: </label>
 
           <div class="MovieDetailContent">
             <div v-for="actor in movie.actors" :key="actor" class="MovieDetail">
