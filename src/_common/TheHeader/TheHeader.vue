@@ -2,15 +2,48 @@
   <div class="TheHeader">
     <BaseContainer class="HeaderContainer">
       <BaseLogo class="HeaderLogo" />
-      <BaseInput class="HeaderSearch" placeholder="Search movies..." />
+      <BaseInput
+        class="HeaderSearch"
+        placeholder="Search movies..."
+        @input="handleSearchUpdate"
+      />
     </BaseContainer>
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts">
+import { ref, defineComponent } from 'vue'
+
 import BaseLogo from '../BaseLogo/BaseLogo.vue'
 import BaseContainer from '../BaseContainer/BaseContainer.vue'
 import BaseInput from '../BaseInput/BaseInput.vue'
+
+export default defineComponent({
+  components: {
+    BaseLogo,
+    BaseContainer,
+    BaseInput,
+  },
+  props: {},
+  emits: ['inputSearch'],
+  setup(props, { emit }) {
+    let headerSearchDebounceTimeout: ReturnType<typeof setTimeout>
+
+    const handleSearchUpdate = (e: any) => {
+      if (headerSearchDebounceTimeout) {
+        clearTimeout(headerSearchDebounceTimeout)
+      }
+
+      headerSearchDebounceTimeout = setTimeout(() => {
+        emit('inputSearch', e.target.value)
+      }, 500)
+    }
+
+    return {
+      handleSearchUpdate,
+    }
+  },
+})
 </script>
 
 <style scoped lang="scss">

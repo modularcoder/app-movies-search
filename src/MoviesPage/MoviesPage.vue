@@ -1,6 +1,6 @@
 <template>
   <div class="MoviesPage">
-    <TheHeader @inputSearch="requestMovies" />
+    <TheHeader @inputSearch="handleSearchChange" />
     <BaseContainer>
       <div class="MoviesListContainer">
         <BaseCardMovie v-for="movie in movies" :key="movie.id" :movie="movie" />
@@ -36,6 +36,7 @@ export default defineComponent({
   setup() {
     const page = ref(1)
     const search = ref('')
+    const searchBy = ref('everything')
     const movies = ref()
     const itemsPerPage = ref(9)
     const itemsCount = ref(0)
@@ -44,11 +45,16 @@ export default defineComponent({
       page.value = newPage
     }
 
+    const handleSearchChange = (searchValue: string) => {
+      search.value = searchValue
+    }
+
     const requestMovies = async () => {
       const { movies: moviesRes, count } = await api.movies.getList({
         limit: itemsPerPage.value,
         offset: itemsPerPage.value * (page.value - 1),
         search: search.value,
+        searchBy: searchBy.value,
       })
 
       movies.value = moviesRes
@@ -64,6 +70,7 @@ export default defineComponent({
       itemsCount,
       page,
       handlePageChange,
+      handleSearchChange,
     }
   },
 })
