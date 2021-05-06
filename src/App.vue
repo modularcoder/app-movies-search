@@ -16,12 +16,8 @@ import MoviesPage from './MoviesPage/MoviesPage.vue'
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background: rgb(238, 174, 202);
-  background: linear-gradient(
-    140deg,
-    rgba(238, 174, 202, 1) 0%,
-    rgba(131, 166, 208, 1) 100%
-  );
+  background: #edeeae;
+  background: linear-gradient(140deg, #edeeae 0%, rgba(131, 166, 208, 1) 100%);
   background-attachment: fixed;
   font-size: 16px;
 }

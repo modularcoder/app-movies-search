@@ -18,7 +18,7 @@
 </template>
 
 <script lang="ts">
-import { ref, defineComponent } from 'vue'
+import { ref, watchEffect, defineComponent } from 'vue'
 import BaseCardMovie from '@/_common/BaseCardMovie/BaseCardMovie.vue'
 import BaseContainer from '@/_common/BaseContainer/BaseContainer.vue'
 import BasePagination from '@/_common/BasePagination/BasePagination.vue'
@@ -55,7 +55,7 @@ export default defineComponent({
       itemsCount.value = count
     }
 
-    requestMovies()
+    watchEffect(() => requestMovies())
 
     return {
       movies,
