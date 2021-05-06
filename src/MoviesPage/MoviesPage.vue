@@ -5,7 +5,7 @@
       <div class="MoviesListContainer">
         <BaseCardMovie v-for="movie in movies" :key="movie.id" :movie="movie" />
       </div>
-      <div class="MoviesPaginationContainer">
+      <div v-if="itemsCount > itemsPerPage" class="MoviesPaginationContainer">
         <BasePagination
           :value="page"
           :total="itemsCount"
