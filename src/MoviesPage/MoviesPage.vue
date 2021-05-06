@@ -25,7 +25,7 @@ const movies = [1, 2, 3, 5, 6, 7, 8, 9, 10]
   flex-direction: column;
 }
 .MoviesListContainer {
-  padding: 2rem;
+  padding: 2rem 0;
   display: grid;
   grid-column-gap: 30px;
   grid-row-gap: 30px;
