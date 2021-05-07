@@ -66,6 +66,7 @@ export default defineComponent({
 
     const handleSearchChange = (searchValue: string) => {
       search.value = searchValue
+      page.value = 1
     }
 
     const requestMovies = async () => {

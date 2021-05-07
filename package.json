@@ -10,7 +10,9 @@
     "lint:markup": "vti diagnostics",
     "lint:script": "eslint --ext .ts,vue --ignore-path .eslintignore .",
     "lint:style": "stylelint src/**/*.{css,scss,vue}",
-    "test:unit": "jest src --watch"
+    "test:unit": "jest src --watch",
+    "test:e2e": "concurrently \"npm run dev\" \"cypress run\"",
+    "cy": "concurrently \"npm run dev\" \"cypress open\""
   },
   "dependencies": {
     "axios": "^0.21.1",
@@ -35,8 +37,11 @@
     "@vue/eslint-config-prettier": "^6.0.0",
     "@vue/eslint-config-typescript": "^7.0.0",
     "@vue/test-utils": "^2.0.0-rc.6",
+    "concurrently": "^6.0.2",
+    "cypress": "^7.2.0",
     "eslint": "^7.25.0",
     "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-cypress": "^2.11.3",
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-vue": "^7.9.0",
     "flush-promises": "^1.0.2",

@@ -11,8 +11,10 @@
 - SCSS is set up, but not used intensively
 - The sample data is generated on each session via faker.js lib
 - The search in the data is made against the title, generes and actors
-- The deployment is done to GitHub page
-- The integration and testing is done via Jest
+- The deployment is done to GitHub pages
+- The integration and unit tests are done via Jest + @testing-library/vue
+- The E2e tests are done via Cypress
+- The CI is done by GitHub actions
 
 ## Asumption
 
@@ -20,7 +22,17 @@
 - Movies searching is done against title, actor and genre
 
 
+## Further improvements
 
+- Implement a dropdown action near the search box where users may select by which criteria to search (everything, by name, by actor, by genre)
+- Setup Vue router, make the movie card item details clickable
+- On card detail click navigate to corresponding bage ?searchBy=actior&search={clickedActorName}
+- Update the page query when user performs the search
+- Implement single movie click through
+
+
+
+--------
 
 ## Recommended IDE Setup
 
