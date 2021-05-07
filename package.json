@@ -10,7 +10,8 @@
     "lint:markup": "vti diagnostics",
     "lint:script": "eslint --ext .ts,vue --ignore-path .eslintignore .",
     "lint:style": "stylelint src/**/*.{css,scss,vue}",
-    "test:unit": "jest src --watch",
+    "test": "npm run test:unit -- --watch",
+    "test:unit": "jest src",
     "test:e2e": "concurrently \"npm run dev\" \"cypress run\"",
     "cy": "concurrently \"npm run dev\" \"cypress open\""
   },
