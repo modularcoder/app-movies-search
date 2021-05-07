@@ -16,6 +16,10 @@
 - The E2e tests are done via Cypress
 - The CI is done by GitHub actions
 - The components naming follows [Vue styleguide](https://v3.vuejs.org/style-guide/#base-component-names-strongly-recommended)
+- The app contains a classical pagination pattern via REST API limit, offset parameters
+- The search is made agains multiple keywords
+- The search is made aginst movie name, actors, genre. For example you may type `drama tim Robbins` and see the results
+- The search is case insensitive. All non-alphanumerical symbols are ignored
 
 ## Asumption
 
@@ -34,6 +38,24 @@
 
 
 --------
+
+## Running the project
+
+1. Setup dependencies
+
+`npm i`
+
+2. Run the dev server
+
+`npm run dev`
+
+3. Testing:
+
+The Jest unit tests can be ran by `npm run test:unit`
+The Cypress E2E tests can be ran by `npm run test:e2e` or in interactive mode `npm run cy`
+
+
+
 
 ## Recommended IDE Setup
 
