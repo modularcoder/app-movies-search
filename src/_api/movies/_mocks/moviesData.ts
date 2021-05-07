@@ -81,16 +81,11 @@ type CreateSearchMoviesDataSetOptions = {
 export const createSearchMoviesDataSet = (
   moviesDataSet: MoviesDataSet,
   {
-    keyword,
-    searchByTitle,
-    searchByActor,
-    searchByGenre,
-  }: CreateSearchMoviesDataSetOptions = {
-    keyword: '',
-    searchByTitle: true,
-    searchByActor: true,
-    searchByGenre: true,
-  },
+    keyword = '',
+    searchByTitle = true,
+    searchByActor = true,
+    searchByGenre = true,
+  }: CreateSearchMoviesDataSetOptions = {},
 ): MoviesDataSet => {
   if (!keyword) {
     return moviesDataSet

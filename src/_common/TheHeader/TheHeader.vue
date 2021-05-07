@@ -5,6 +5,7 @@
       <BaseInput
         class="HeaderSearch"
         placeholder="Search movies..."
+        name="search"
         @input="handleSearchUpdate"
       />
     </BaseContainer>

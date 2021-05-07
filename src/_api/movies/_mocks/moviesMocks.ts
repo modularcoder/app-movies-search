@@ -43,6 +43,7 @@ const userMocks = [
       const moviesDataSetMatching = createSearchMoviesDataSet(moviesDataSet, {
         keyword,
       })
+
       return moviesDataSetMatching
     }, moviesDataSetAll)
 
