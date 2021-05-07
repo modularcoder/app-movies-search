@@ -1,8 +1,8 @@
-import _ from 'lodash'
+import _, { replace } from 'lodash'
 import { rest } from 'msw'
 
 import config from '@/_config'
-import moviesData from './moviesData'
+import moviesDataSetAll, { createSearchMoviesDataSet } from './moviesData'
 
 const apiUrl = config.api.url
 
@@ -10,12 +10,18 @@ const userMocks = [
   rest.get(`${apiUrl}/movies`, async (req, res, ctx) => {
     const limit = parseInt(req.url.searchParams.get('limit') || '10')
     const offset = parseInt(req.url.searchParams.get('offset') || '0')
-    const search = req.url.searchParams.get('search')?.toLocaleLowerCase()
+    const search = req.url.searchParams
+      .get('search')
+      ?.toLocaleLowerCase()
+      ?.replace(/[^a-zA-Z0-9\s]/gi, '')
     const searchBy = req.url.searchParams.get('searchBy')
+    const searchKeywords = search
+      ? search.split(' ').map((keyword) => keyword.trim())
+      : []
 
     // If there is no searc therm just return the existing data
-    if (!search) {
-      const moviesMatching = moviesData.list
+    if (!searchKeywords.length) {
+      const moviesMatching = moviesDataSetAll.list
 
       const result = {
         movies: moviesMatching.slice(offset, offset + limit),
@@ -32,56 +38,17 @@ const userMocks = [
       )
     }
 
-    // There is a search param
-    const weightsByMovieId: { [key: string]: number } = {}
-
-    const increaseMovieSearchWeight = (movieId: string, weight = 1) => {
-      weightsByMovieId[movieId] =
-        typeof weightsByMovieId[movieId] === 'number'
-          ? weightsByMovieId[movieId] + weight
-          : weight
-    }
-
-    // Search by title
-    moviesData.list.forEach((movie) => {
-      if (movie.title.toLocaleLowerCase().includes(search)) {
-        increaseMovieSearchWeight(movie.id, 1)
-      }
-    })
-
-    // Search by actor
-    Object.keys(moviesData.byActor).forEach((actor) => {
-      if (actor.toLocaleLowerCase().includes(search)) {
-        const actorMovies = moviesData.byActor[actor]
-
-        actorMovies.forEach((movie) => increaseMovieSearchWeight(movie.id, 0.5))
-      }
-    })
-
-    // Search by genre
-    Object.keys(moviesData.byGenre).forEach((genre) => {
-      if (genre.toLocaleLowerCase().includes(search)) {
-        const genreMovies = moviesData.byGenre[genre]
-
-        genreMovies.forEach((movie) => increaseMovieSearchWeight(movie.id, 0.5))
-      }
-    })
-
-    const moviesMatching = Object.keys(weightsByMovieId)
-      .map((movieId) => {
-        return {
-          ...moviesData.byId[movieId],
-          searchMatchWeight: weightsByMovieId[movieId],
-        }
+    // For each keyword create a subset matching the keyword
+    const moviesDataSet = searchKeywords.reduce((moviesDataSet, keyword) => {
+      const moviesDataSetMatching = createSearchMoviesDataSet(moviesDataSet, {
+        keyword,
       })
-      // Sort by weigths
-      .sort(
-        (movie1, movie2) => movie2.searchMatchWeight - movie1.searchMatchWeight,
-      )
+      return moviesDataSetMatching
+    }, moviesDataSetAll)
 
     const result = {
-      movies: moviesMatching.slice(offset, offset + limit),
-      count: moviesMatching.length,
+      movies: moviesDataSet.list.slice(offset, offset + limit),
+      count: moviesDataSet.list.length,
     }
 
     return res(
@@ -96,7 +63,7 @@ const userMocks = [
 
   rest.get(`${apiUrl}/movies/:movieId`, (req, res, ctx) => {
     const { movieId } = req.params
-    const movie = moviesData.byId[movieId]
+    const movie = moviesDataSetAll.byId[movieId]
 
     if (movie) {
       return res(ctx.status(200), ctx.delay(200), ctx.json(movie))
@@ -105,7 +72,7 @@ const userMocks = [
         ctx.status(404),
         ctx.status(200),
         ctx.json({
-          message: 'User not found',
+          message: 'Movie not found',
         }),
       )
     }
