@@ -3,18 +3,19 @@
 
 ## Project inputs
 
-- The Project uses TypeScripts
-- TheProject uses Prettier coding formatting
+- The project uses Vue 3 with Vue Composition API
+- The Project uses TypeScript 
+- The Project uses Prettier coding formatting
 - The project uses Vite blazing fast as server and build tool
 - The API is mocked by msw
 - The app is made on top of Modular structure
 - SCSS is set up, but not used intensively
-- The sample data is generated on each session via faker.js lib
 - The search in the data is made against the title, generes and actors
 - The deployment is done to GitHub pages
 - The integration and unit tests are done via Jest + @testing-library/vue
 - The E2e tests are done via Cypress
 - The CI is done by GitHub actions
+- The components naming follows [Vue styleguide](https://v3.vuejs.org/style-guide/#base-component-names-strongly-recommended)
 
 ## Asumption
 
