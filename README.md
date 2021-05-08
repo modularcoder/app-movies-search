@@ -1,5 +1,19 @@
 # MovieApp: Example Vue 3 + Typescript + Vite + Prettier project
 
+> This app search movies within a predefined dataset via title, author, genre
+
+
+[![demo](https://user-images.githubusercontent.com/3959008/117518919-adcf1000-afb2-11eb-984d-073e1725bd15.png)](https://movies-search.gh.am/)
+
+
+
+
+<p align="center">
+  <h3>
+    <a href="https://movies-search.gh.am/" target="_blank"> View Demo 🏄</a>
+  </h3>
+</p>
+
 
 ## Project inputs
 
@@ -36,9 +50,6 @@
 - Implement single movie click through
 
 
-
---------
-
 ## Running the project
 
 1. Setup dependencies
@@ -55,6 +66,7 @@ The Jest unit tests can be ran by `npm run test:unit`
 The Cypress E2E tests can be ran by `npm run test:e2e` or in interactive mode `npm run cy`
 
 
+--------
 
 
 ## Recommended IDE Setup
