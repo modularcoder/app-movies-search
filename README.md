@@ -3,18 +3,18 @@
 
 ## Project inputs
 
-- The project uses Vue 3 with Vue Composition API
+- The project uses [Vue 3](https://v3.vuejs.org/) with [Vue Composition API](https://v3.vuejs.org/guide/composition-api-introduction.html)
 - The Project uses TypeScript 
-- The Project uses Prettier coding formatting
-- The project uses Vite blazing fast as server and build tool
-- The API is mocked by msw
+- The Project uses [Prettier](https://prettier.io/) + Eslint for code linting and formatting
+- The project uses [Vite](https://vitejs.dev/] for dev server and bundling which is significantly faster than webpack
+- The API is mocked by [msw](https://mswjs.io/)
 - The app is made on top of Modular structure
 - SCSS is set up, but not used intensively
 - The search in the data is made against the title, generes and actors
-- The deployment is done to GitHub pages
-- The integration and unit tests are done via Jest + @testing-library/vue
-- The E2e tests are done via Cypress
-- The CI is done by GitHub actions
+- The deployment is done to [GitHub pages](https://pages.github.com/)
+- The integration and unit tests are done via [Jest](https://jestjs.io/) + [@testing-library/vue](https://testing-library.com/docs/vue-testing-library/intro/)
+- The E2e tests are done via [Cypress](https://www.cypress.io/)
+- The CI is done by [GitHub actions](https://github.com/features/actions)
 - The components naming follows [Vue styleguide](https://v3.vuejs.org/style-guide/#base-component-names-strongly-recommended)
 - The app contains a classical pagination pattern via REST API limit, offset parameters
 - The search is made agains multiple keywords
