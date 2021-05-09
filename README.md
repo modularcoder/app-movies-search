@@ -35,11 +35,6 @@
 - The search is made aginst movie name, actors, genre. For example you may type `drama tim Robbins` and see the results
 - The search is case insensitive. All non-alphanumerical symbols are ignored
 
-## Asumption
-
-- Mobile view is out of scope
-- Movies searching is done against title, actor and genre
-
 
 ## Further improvements
 
@@ -48,6 +43,7 @@
 - On card detail click navigate to corresponding bage ?searchBy=actior&search={clickedActorName}
 - Update the page query when user performs the search
 - Implement single movie click through
+- Mobile view is out of scope for this project but might be implemented
 
 
 ## Running the project
