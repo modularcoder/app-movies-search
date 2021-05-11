@@ -20,9 +20,9 @@
 - The project uses [Vue 3](https://v3.vuejs.org/) with [Vue Composition API](https://v3.vuejs.org/guide/composition-api-introduction.html)
 - The Project uses TypeScript 
 - The Project uses [Prettier](https://prettier.io/) + Eslint for code linting and formatting
-- The project uses [Vite](https://vitejs.dev/] for dev server and bundling which is significantly faster than webpack
+- The project uses [Vite](https://vitejs.dev/) for dev server and bundling which is significantly faster than webpack
 - The API is mocked by [msw](https://mswjs.io/)
-- The app is made on top of Modular structure
+- The app is made using [Modular Stryleguide](https://github.com/modularcode/modular-styleguide) rules
 - SCSS is set up, but not used intensively
 - The search in the data is made against the title, generes and actors
 - The deployment is done to [GitHub pages](https://pages.github.com/)
