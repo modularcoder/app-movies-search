@@ -1,0 +1,6 @@
+{
+  "public": "dist",
+  "rewrites": [
+    { "source": "analytics/**", "destination": "/index.html" }
+  ]
+}
