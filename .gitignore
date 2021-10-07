@@ -5,3 +5,4 @@ dist-ssr
 *.local
 tests/e2e/videos
 tests/e2e/screenshots
+storybook-static
