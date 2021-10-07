@@ -1,5 +1,5 @@
 <template>
-  <div class="BaseLogo">MoviesApp</div>
+  <div class="BaseLogo">MoviesApp Updated Again</div>
 </template>
 
 <script lang="ts" setup></script>
