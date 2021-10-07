@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc --noEmit && vite build && echo $'/*\n  Access-Control-Allow-Origin = *' > ./dist/_headers",
+    "build": "vue-tsc --noEmit && vite build",
+    "build2": "vue-tsc --noEmit && vite build && echo $'/*\n  Access-Control-Allow-Origin = *' > ./dist/_headers",
     "serve": "vite preview",
     "deploy": "npm run build && echo movies-search.gh.am > ./dist/CNAME  && gh-pages -d dist --repo git@github.com:modularcoder/app-movies-search.git --branch gh-pages",
     "lint": "npm run lint:markup && npm run lint:script && npm run lint:style",
