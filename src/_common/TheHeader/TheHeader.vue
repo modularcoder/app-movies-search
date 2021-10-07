@@ -12,39 +12,29 @@
   </div>
 </template>
 
-<script lang="ts">
-import { ref, defineComponent } from 'vue'
-
+<script setup lang="ts">
 import BaseLogo from '../BaseLogo/BaseLogo.vue'
 import BaseContainer from '../BaseContainer/BaseContainer.vue'
 import BaseInput from '../BaseInput/BaseInput.vue'
 
-export default defineComponent({
-  components: {
-    BaseLogo,
-    BaseContainer,
-    BaseInput,
-  },
-  props: {},
-  emits: ['inputSearch'],
-  setup(props, { emit }) {
-    let headerSearchDebounceTimeout: ReturnType<typeof setTimeout>
+  const emit = defineEmits<{
+    (e: 'inputSearch', value: any): void
+  }>()
 
-    const handleSearchUpdate = (e: any) => {
-      if (headerSearchDebounceTimeout) {
-        clearTimeout(headerSearchDebounceTimeout)
-      }
 
-      headerSearchDebounceTimeout = setTimeout(() => {
-        emit('inputSearch', e.target.value)
-      }, 500)
+  let headerSearchDebounceTimeout: ReturnType<typeof setTimeout>
+
+  const handleSearchUpdate = (e: any) => {
+    if (headerSearchDebounceTimeout) {
+      clearTimeout(headerSearchDebounceTimeout)
     }
 
-    return {
-      handleSearchUpdate,
-    }
-  },
-})
+    headerSearchDebounceTimeout = setTimeout(() => {
+      emit('inputSearch', e.target.value)
+    }, 500)
+  }
+
+
 </script>
 
 <style scoped lang="scss">

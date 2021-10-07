@@ -84,7 +84,7 @@ export default defineComponent({
         itemsCount.value = count
 
         status.value = 'idle'
-      } catch (err) {
+      } catch (err: any) {
         status.value = 'error'
         statusMessage.value = err.message
       }
