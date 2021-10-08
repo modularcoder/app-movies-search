@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "npm run build:app && npm run build:storybook -- -s public -o dist/storybook",
+    "build": "npm run build:app",
     "build:app": "vue-tsc --noEmit && vite build",
     "build:storybook": "cross-env STORYBOOK_BASE_HREF=storybook build-storybook",
     "serve": "vite preview",
